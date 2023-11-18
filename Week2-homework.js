@@ -1,7 +1,9 @@
 let pizzaPlace = "Pizza Castle";
+console.log(pizzaPlace);
 console.log(typeof pizzaPlace);
 
 let numberOfToppings = 20;
+console.log(numberOfToppings);
 console.log(typeof numberOfToppings);
 
 console.log(
