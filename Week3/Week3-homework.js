@@ -1,27 +1,47 @@
-let pizzaToppings = ["pepperoni", "green pepper", "mushroom", "sausage"];
+const pizzaToppings = ["pepperoni", "green pepper", "mushroom", "sausage"];
 
 function greetCustomer() {
-  for (let item in pizzaToppings) {
-    console.log("Welcome to Pizza Castle. Our pizzas feature delicious toppings such as " + pizzaToppings[0] + ", " + pizzaToppings[1] + ", " + pizzaToppings[2] + ", and " + pizzaToppings[3] + ".");
+  let greeting = "Welcome to Pizza Castle! Our toppings include ";
+  for (let item of pizzaToppings) {
+    greeting += `${item}, `;
   }
+  console.log(greeting);
 }
 
-let newPizza = ["large", "thick crust", pizzaToppings];
-function getPizzaOrder(size, crust, toppings) {
-  for (let item in newPizza) {
-    console.log("One " + newPizza[0] + [newPizza[1] + "pizza with " + newPizza[2][0] + ", " + newPizza[2][1] + ", " + newPizza[2][2] + ", and " + newPizza[2][3] + ", coming up!");
+function getPizzaOrder(size, crust, ...toppings) {
+  let newOrder = `One ${size} pizza on ${crust} with `;
+  for (let item of toppings) {
+    newOrder += `${item}`;
   }
+  console.log(`${newOrder}, coming up!`);
+  return [size, crust, toppings];
 }
 
-function preparePizza(arr) {
-  console.log("...Pizza cooking...");
-}
-
-const servePizza = function(obj) {
-  console.log("Order up! Here's your " + + newPizza[0] + [newPizza[1] + "pizza with " + newPizza[2][0] + ", " + newPizza[2][1] + ", " + newPizza[2][2] + ", and " + newPizza[2][3] + ". Enjoy!");
+let newPizzaObj = {
+  size: "large",
+  crust: "cauliflower",
+  toppings: pizzaToppings
 };
 
+function preparePizza([size, crust, toppings]) {
+  console.log("...Pizza is cooking...");
+  newPizzaObj = {
+    size: size,
+    crust: crust,
+    toppings: [toppings]
+  };
+  return newPizzaObj;
+}
+
+function servePizza(newPizzaObj) {
+  let completedOrder = `Order up! Here's your ${newPizzaObj.size} pizza on ${newPizzaObj.crust} with `;
+  for (let item of newPizzaObj.toppings) {
+    completedOrder += `${item}`;
+  }
+  console.log(`${completedOrder}. Enjoy!`);
+  return newPizzaObj;
+}
+
 greetCustomer();
-getPizzaOrder(newPizza);
-preparePizza(getPizzaOrder());
-servePizza(preparePizza());
+let newCustomerOrder = getPizzaOrder("large", "cauliflower", "green pepper", "mushroom", "sausage");
+servePizza(preparePizza(newCustomerOrder));
