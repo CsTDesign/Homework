@@ -304,9 +304,9 @@ const data = [
 ];
 
 // Create a list of user 3's to-do's
-const userThree = data.filter(user => user.userId === 3);
+const userThree = data.map(user => user.userId === 3);
 console.log(userThree);
 
 // Then find the number of user 3's incomplete tasks
-const userThreeIncomplete = userThree.filter(user => user.complete === false);
+const userThreeIncomplete = userThree.map(user => user.completed === false);
 console.log(userThreeIncomplete);
